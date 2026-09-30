@@ -20,16 +20,16 @@ Every script attached to an entity runs in its own isolated Lua 5.4 environment.
 
 ---
 
-## Callbacks
+### Callbacks
 
-Define these as global functions in your script.
+Define these as global functions in your script. Current entity ID is available via `self_entity` or passed as `self`.
 
 | Callback | Description |
 | --- | --- |
 | `OnCreate(self)` | Called once when the entity is created |
 | `OnUpdate(self, dt)` | Called every frame; `dt` in seconds (0 while paused) |
 | `OnDestroy(self)` | Called when the entity or scene is destroyed |
-| `OnCollision(self, other)` | Legacy collision callback |
+| `OnCollision(self, other)` | Collision callback |
 | `OnCollisionEnter(self, other, normalX, normalY)` | Solid contact began, with contact normal |
 | `OnTriggerEnter(self, other)` | Entered a trigger / sensor collider |
 | `OnInputReceived(self, event)` | Keyboard, mouse, joystick or text input (`OnInputReceiced` is an alias) |
@@ -178,14 +178,14 @@ Plain numbers, integers, booleans and strings are also supported.
 | `GetWorldPosition(e) -> x, y` | World position |
 | `GetWorldRotation(e) -> number` | World rotation in degrees |
 | `GetWorldScale(e) -> sx, sy` | World scale |
-| `Template(path) -> Template` | Creates a template reference |
-| `Template:Instantiate(x, y, parent?) -> Entity` | Spawns the template, returns the root entity |
-| `Instantiate(template, x, y, parent?) -> Entity` | Spawns a `Template` or a path string |
+| `Template(path) -> Template` | Creates a template reference (`path` field, method `Instantiate(x, y, parent?)`) |
+| `Instantiate(template, x, y, parent?) -> Entity` | Spawns a `Template` or path string |
 | `LoadScene(name)` | Loads `assets/scenes/<name>.json` |
 
 ```lua
 local bullet = Template("assets/templates/bullet.template")
 local e = bullet:Instantiate(100, 200)
+-- or: local e = Instantiate(bullet, 100, 200)
 ```
 
 ---
