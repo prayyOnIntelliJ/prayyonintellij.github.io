@@ -1,4 +1,4 @@
-theme: jekyll-theme-architect
+theme: jekyll-theme-primer
 title: RayneEngine
 description: Modular 2D C++20 & SFML Game Engine with Lua 5.4 Scripting, Custom 2D Physics & Visual Editors
 show_downloads: true
